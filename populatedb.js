@@ -141,13 +141,13 @@ function createBrand(cb) {
 function createNotebook(cb) {
     async.parallel([
         function(callback) {
-            notebookCreate(brand[3], 'A4 Notebook', '$5.00', 'This is a simple A4 notebook that gets you ready for school!', '4','9781473211896', callback);
+            notebookCreate(brand[3], 'A4 Notebook', '$5.00', 'This is a simple A4 notebook that gets you ready for school!', '4', callback);
         },
         function(callback) {
-            notebookCreate(brand[4], 'Soft A5 Notebook', '$15.00', 'This soft and small notebook fits right into your purse. This is a limited edition from the renowed brand Moleskin', '1', '9788401352836', callback);
+            notebookCreate(brand[4], 'Soft A5 Notebook', '$15.00', 'This soft and small notebook fits right into your purse. This is a limited edition from the renowed brand Moleskin', '1', callback);
         },
         function(callback) {
-            notebookCreate(brand[4], 'A4 Journal','$20.00', 'A product created and designed to keep you on schedule and on top of all professional things', '9780765379528', '10', callback);
+            notebookCreate(brand[4], 'A4 Journal','$20.00', 'A product created and designed to keep you on schedule and on top of all professional things', '10', callback);
         },
         ],
         // optional callback
@@ -158,45 +158,40 @@ function createNotebook(cb) {
 function createPen(cb) {
     async.parallel([
         function(callback) {
-          bookInstanceCreate(books[0], 'London Gollancz, 2014.', false, 'Available', callback)
+            penCreate('Fountain pen Essentio', '$50.00', '2', brand[0], 'A high-end pen to satisfy all your luxurious writing needs', callback)
         },
         function(callback) {
-          bookInstanceCreate(books[1], ' Gollancz, 2011.', false, 'Loaned', callback)
+            penCreate('Neo Slim metal fountain pen', '$30.00', '8', brand[0], 'When it comes to design, young professionals and trend-setters who keep pace with the times have specific expectations: they expect a sophisticated and modern look and a cool, smooth feel. This is where the new Neo Slim comes in as it meets these very needs: The writing instruments in the series have an especially slim design. ', callback)
         },
         function(callback) {
-          bookInstanceCreate(books[2], ' Gollancz, 2015.', false, false, callback)
+            penCreate('Souveran Black-Blue', '$150.00', '1', brand[1], 'In the year 1929 Pelikan was the first company in the world to introduce the differentiated piston mechanism. This technique causes the spindle inside the fountain pen to turn quicker than the end piece of the barrel, with the help of two different threads. To this date, this fountain pen exists in many different variations, and though it has been developed in design and technical details over time, the basic mechanism remains the same.', callback)
         },
         function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
+            penCreate('IM Rollerball Black pen', '$5.00', '39', brand[2], 'test1', callback)
         },
         function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
+            penCreate('Souveran Black-Blue', '$150.00', '1', brand[1], 'In the year 1929 Pelikan was the first company in the world to introduce the differentiated piston mechanism. This technique causes the spindle inside the fountain pen to turn quicker than the end piece of the barrel, with the help of two different threads. To this date, this fountain pen exists in many different variations, and though it has been developed in design and technical details over time, the basic mechanism remains the same.', callback)
         },
-        function(callback) {
-          bookInstanceCreate(books[3], 'New York Tom Doherty Associates, 2016.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Available', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Maintenance', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[4], 'New York, NY Tom Doherty Associates, LLC, 2015.', false, 'Loaned', callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[0], 'Imprint XXX2', false, false, callback)
-        },
-        function(callback) {
-          bookInstanceCreate(books[1], 'Imprint XXX3', false, false, callback)
-        }
         ],
         // Optional callback
         cb);
 }
 
 function createPencil(cb) {
-
+    async.parallel([
+        function(callback) {
+            pencilCreate('Castell 9000 2B', brand[0], '$1.48', 'Classic 2B pencil', 3, callback)
+        },
+        function(callback) {
+            pencilCreate('Blackwing Volume XIX', brand[], '$28.43', 'The Blackwing XIX is our tribute to the 19th Amendment and the ongoing fight for voting rights in the United States and around the world. It features a purple barrel and three-sided white and golden yellow imprint inspired by the suffrage flag, striped silver ferrule, and purple eraser. The 36 yellow stars represent the 36 states that ratified the amendment. The firm graphite is perfect for writing a letter to your Representatives or making your voting plan.', '32', callback)
+        },
+        function(callback) {
+            pencilCreate('penciltest', brand[5], '$0.00', 'This one is for free', '1000000', callback)
+        },
+        function(callback) {
+            pencilCreate('testpencil', brand[5], '$0.01', 'This one is almost for free!', '500', callback)
+        }
+    ])
 }
 
 
@@ -213,7 +208,7 @@ function(err, results) {
         console.log('FINAL ERR: '+err);
     }
     else {
-        console.log('Products: '+pen, pencil, notebook);
+        console.log('Products: '+ pen, pencil, notebook);
         
     }
     // All done, disconnect from database
