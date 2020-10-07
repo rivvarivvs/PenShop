@@ -4,6 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//connecting mongoDB
+const mongoose = require('mongoose')
+const mongoDB = mongodb+srv://rivva:rivva@cluster0.rklb0.azure.mongodb.net/penshop?retryWrites=true&w=majority
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+const db = mongoose.collection
+db.on('error', console.error.bind(console, 'MongoDB connection error'))
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 

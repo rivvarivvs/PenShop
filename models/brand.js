@@ -5,9 +5,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const BrandSchema = new Schema({
-    brand_name: {type: String, required: true, maxlength: 200},
-    model: {type: Schema.Types.ObjectId, ref: 'PenModel'},
-    brand_detail: {type: String, required: true, minlength: 50}
+    name: {type: String, required: true, maxlength: 200},
+    model: {type: Schema.Types.ObjectId, ref: 'Pen, Notebook, Pencil'},
+    brand_details: {type: String, required: true, minlength: 50}
 })
+
+BrandSchema
+    .virtual('url')
+    .get(() => {
+        return 'catalog/brand/' + this._id
+    })
 
 module.exports = mongoose.model('Brand', BrandSchema)

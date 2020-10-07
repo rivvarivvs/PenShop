@@ -9,4 +9,11 @@ const PencilModelSchema = new Schema({
     stock: {type: Number}
 })
 
-module.exports = mongoose.model('PencilModel', PencilModelSchema)
+//virtual for pencilModel url
+PencilModelSchema
+    .virtual('url')
+    .get(() => {
+        return '/catalog/pencil/' + this._id
+    })
+
+module.exports = mongoose.model('Pencil', PencilModelSchema)

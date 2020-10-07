@@ -9,4 +9,10 @@ const NotebookSchema = new Schema({
     stock: {type: Number}
 })
 
+NotebookSchema
+    .virtual('url')
+    .get(() => {
+        return '/catalog/notebook/' + this._id
+    })
+
 module.exports = mongoose.model('Notebook', NotebookSchema)

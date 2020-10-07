@@ -4,9 +4,15 @@ const Schema = mongoose.Schema
 const PenModelSchema = new Schema({
     name: {type: String, required: true},
     price: {type: Number, required: true},
-    stock: {type: Boolean},
-    brand: {type: Schema.Types.ObjectId, ref:'Brand'}
-
+    stock: {type: Number},
+    brand: {type: Schema.Types.ObjectId, ref:'Brand'},
+    details: {type: String, required: true}
 })
 
-module.exports = mongoose.model('PenModel', PenModelSchema)
+PenModelSchema
+    .virtual('url')
+    .get(() => {
+        return '/catalog/pen/' + this._id
+    })
+
+module.exports = mongoose.model('Pen', PenModelSchema)
